@@ -36,7 +36,7 @@ public class ViewActivity extends AppCompatActivity {
             savedText = text.getText().toString();
             Log.d("LifeCycle", "else called " + message + " and " + savedInstanceState);
         }
-        
+
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
