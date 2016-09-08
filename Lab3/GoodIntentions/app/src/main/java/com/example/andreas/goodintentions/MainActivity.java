@@ -14,8 +14,6 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
-
-// Test Commit! :)
 public class MainActivity extends AppCompatActivity {
 
     @Override
