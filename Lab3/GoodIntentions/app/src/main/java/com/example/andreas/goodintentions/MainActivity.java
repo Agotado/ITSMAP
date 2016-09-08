@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import java.util.Calendar;
 
+
+// Test Commit! :)
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
                 setAlarm.putExtra(AlarmClock.EXTRA_HOUR, hour );
                 setAlarm.putExtra(AlarmClock.EXTRA_MINUTES, minute + 1);
+
 
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.SET_ALARM) != PackageManager.PERMISSION_GRANTED) {
                     Toast toast = Toast.makeText(getApplicationContext(),"You need permission!",Toast.LENGTH_SHORT);
