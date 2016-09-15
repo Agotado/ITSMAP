@@ -26,7 +26,7 @@ public class EditActivity extends AppCompatActivity {
         final RadioButton devInputNo = (RadioButton)findViewById(R.id.radioBtn_no);
 
 
-        //if intent is recieved, get the info
+        //if intent is received, get the info
         String messageName = getIntent().getStringExtra("nameInfoPopulate");
         String messageID = getIntent().getStringExtra("idInfoPopulate");
         Boolean messageDevInfo = getIntent().getBooleanExtra("devInfoPopulate",false);
