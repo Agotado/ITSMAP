@@ -26,6 +26,31 @@ public class EditActivity extends AppCompatActivity {
         final RadioButton devInputNo = (RadioButton)findViewById(R.id.radioBtn_no);
 
 
+        //if intent is recieved, get the info
+        String messageName = getIntent().getStringExtra("nameInfoPopulate");
+        String messageID = getIntent().getStringExtra("idInfoPopulate");
+        Boolean messageDevInfo = getIntent().getBooleanExtra("devInfoPopulate",false);
+        Log.d("Testing", " got the intent for populating " + messageName + " " + messageID + " " + messageDevInfo);
+
+
+        if(messageName != null) {
+            nameInput.setText(messageName);
+            Log.d("Testing", " name ");
+
+            idInput.setText(messageID);
+            Log.d("Testing", " id ");
+
+
+            if(messageDevInfo == true)
+            {
+                devInputYes.setChecked(true);
+            } else
+            {
+                devInputNo.setChecked(true);
+            }
+            Log.d("Testing", " devInfo ");
+        }
+
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

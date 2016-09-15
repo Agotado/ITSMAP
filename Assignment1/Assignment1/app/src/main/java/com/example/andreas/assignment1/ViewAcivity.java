@@ -16,7 +16,7 @@ import android.widget.TextView;
 public class ViewAcivity extends AppCompatActivity {
     static String savedName;
     static String savedId;
-    static Boolean savedDevInfo;
+    static Boolean savedDevInfo = false;
 
 
 
@@ -33,9 +33,9 @@ public class ViewAcivity extends AppCompatActivity {
         Log.d("Testing", "created stuffz ");
 
         //if persisted data:
-//        nameText.setText(savedName);
-//        idText.setText(savedId);
-//        devInfo.setChecked(savedDevInfo);
+        nameText.setText(savedName);
+        idText.setText(savedId);
+        devInfo.setChecked(savedDevInfo);
 
         //if intent is recieved, get the info
         String messageName = getIntent().getStringExtra("nameInfo");
@@ -52,9 +52,8 @@ public class ViewAcivity extends AppCompatActivity {
             nameText.setText(savedName);
             idText.setText(savedId);
             devInfo.setChecked(savedDevInfo);
-
+            Log.d("Testing", " saved info " + nameText.getText() + " " + idText.getText() + " " + devInfo.isChecked());
         }
-
 
         if(messageName != null) {
             nameText.setText(messageName);
@@ -65,7 +64,6 @@ public class ViewAcivity extends AppCompatActivity {
 
             devInfo.setChecked(messageDevInfo);
             Log.d("Testing", " devInfo ");
-
         }
 
         Log.d("Testing", " morar created stuffz ");
@@ -80,11 +78,16 @@ public class ViewAcivity extends AppCompatActivity {
                 savedDevInfo = devInfo.isChecked();
 
                 Intent fillOut = new Intent(getApplicationContext(), EditActivity.class);
+
+                //insert info into intent
+                fillOut.putExtra("nameInfoPopulate", savedName);
+                fillOut.putExtra("idInfoPopulate", savedId);
+                fillOut.putExtra("devInfoPopulate", savedDevInfo);
+
                 startActivity(fillOut);
             }
         });
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {

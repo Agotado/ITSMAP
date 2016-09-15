@@ -27,6 +27,7 @@
         android:minWidth="150dp"
         android:layout_toRightOf="@+id/name_text"
         android:layout_alignBaseline="@+id/name_text"
+        android:imeOptions="flagNoExtractUi"
         android:layout_toEndOf="@+id/name_text" />
 
     <TextView
@@ -46,6 +47,7 @@
         android:layout_alignRight="@+id/name_input"
         android:layout_alignEnd="@+id/name_input"
         android:layout_alignLeft="@+id/name_input"
+        android:imeOptions="flagNoExtractUi"
         android:layout_alignStart="@+id/name_input"/>
 
     <TextView
