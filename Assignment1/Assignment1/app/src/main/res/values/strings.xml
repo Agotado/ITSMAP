@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">I, Android</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Shared names-->
+    <string name="android_developer">Android Developer:</string>
+    <string name="id">ID:</string>
+    <string name="name">Name:</string>
+
+
+    <!--EditView specific strings-->
+    <string name="radioBtn_yes">Yes</string>
+    <string name="radioBtn_no">No</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_ok">Ok</string>
+
+
+</resources>
