@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/id"
-        android:id="@+id/id_text"
+        android:id="@+id/id_Text"
         android:layout_below="@+id/name_input"
         android:layout_alignRight="@+id/name_text"/>
 
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/id_input"
         android:minWidth="150dp"
-        android:layout_alignBaseline="@+id/id_text"
+        android:layout_alignBaseline="@+id/id_Text"
         android:layout_alignRight="@+id/name_input"
         android:layout_alignEnd="@+id/name_input"
         android:layout_alignLeft="@+id/name_input"

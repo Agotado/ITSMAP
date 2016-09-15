@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/id"
-        android:id="@+id/id_text"
+        android:id="@+id/id_Text"
         android:layout_below="@+id/name_input"
         android:layout_alignLeft="@+id/name_input"
         android:layout_alignStart="@+id/name_input" />
@@ -43,9 +43,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/id_input"
-        android:layout_below="@+id/id_text"
-        android:layout_alignLeft="@+id/id_text"
-        android:layout_alignStart="@+id/id_text"
+        android:layout_below="@+id/id_Text"
+        android:layout_alignLeft="@+id/id_Text"
+        android:layout_alignStart="@+id/id_Text"
         android:minWidth="200dp"
         android:layout_marginBottom="2dp" />
 

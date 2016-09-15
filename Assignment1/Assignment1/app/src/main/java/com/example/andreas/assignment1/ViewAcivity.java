@@ -1,15 +1,24 @@
 package com.example.andreas.assignment1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 public class ViewAcivity extends AppCompatActivity {
+    static String savedName;
+    static String savedId;
+    static Boolean savedDevInfo;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +27,73 @@ public class ViewAcivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final TextView nameText = (TextView)findViewById(R.id.name_view);
+        final TextView idText = (TextView)findViewById(R.id.id_view);
+        final CheckBox devInfo = (CheckBox)findViewById(R.id.checkBox_view);
+        Log.d("Testing", "created stuffz ");
+
+        //if persisted data:
+//        nameText.setText(savedName);
+//        idText.setText(savedId);
+//        devInfo.setChecked(savedDevInfo);
+
+        //if intent is recieved, get the info
+        String messageName = getIntent().getStringExtra("nameInfo");
+        String messageID = getIntent().getStringExtra("idInfo");
+        Boolean messageDevInfo = getIntent().getBooleanExtra("devInfo",false);
+        Log.d("Testing", " got then intent " + messageName + " " + messageID + " " + messageDevInfo);
+
+        //if saved info, get it!
+        if(savedInstanceState != null) {
+            savedName = savedInstanceState.getString("savedName");
+            savedId = savedInstanceState.getString("savedId");
+            savedDevInfo = savedInstanceState.getBoolean("savedDevInfo");
+
+            nameText.setText(savedName);
+            idText.setText(savedId);
+            devInfo.setChecked(savedDevInfo);
+
+        }
+
+
+        if(messageName != null) {
+            nameText.setText(messageName);
+            Log.d("Testing", " name ");
+
+            idText.setText(messageID);
+            Log.d("Testing", " id ");
+
+            devInfo.setChecked(messageDevInfo);
+            Log.d("Testing", " devInfo ");
+
+        }
+
+        Log.d("Testing", " morar created stuffz ");
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                savedName = nameText.getText().toString();
+                savedId = idText.getText().toString();
+                savedDevInfo = devInfo.isChecked();
+
+                Intent fillOut = new Intent(getApplicationContext(), EditActivity.class);
+                startActivity(fillOut);
             }
         });
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+
+        savedInstanceState.putString("savedName", savedName);
+        savedInstanceState.putString("savedId", savedId);
+        savedInstanceState.putBoolean("savedDevInfo",savedDevInfo);
+
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
