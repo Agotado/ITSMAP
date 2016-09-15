@@ -12,7 +12,7 @@
     <string name="radioBtn_yes">Yes</string>
     <string name="radioBtn_no">No</string>
     <string name="btn_cancel">Cancel</string>
-    <string name="btn_ok">Ok</string>
+    <string name="btn_save">Save</string>
 
 
 </resources>

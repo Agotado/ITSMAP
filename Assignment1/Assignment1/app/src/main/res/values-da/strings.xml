@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">I, Android</string>
+    <string name="action_settings">Indstillinger</string>
+
+    <!--Shared names-->
+    <string name="android_developer">Android Udvikler:</string>
+    <string name="id">ID:</string>
+    <string name="name">Navn:</string>
+
+
+    <!--EditView specific strings-->
+    <string name="radioBtn_yes">Ja</string>
+    <string name="radioBtn_no">Nej</string>
+    <string name="btn_cancel">Afbryd</string>
+    <string name="btn_save">Gem</string>
+</resources>

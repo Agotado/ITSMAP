@@ -18,7 +18,7 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
 
 
-        Button btn_ok = (Button)findViewById(R.id.btn_ok);
+        Button btn_save = (Button)findViewById(R.id.btn_save);
         Button btn_cancel = (Button)findViewById(R.id.btn_cancel);
         final EditText nameInput = (EditText)findViewById(R.id.name_input);
         final EditText idInput = (EditText)findViewById(R.id.id_input);
@@ -51,7 +51,7 @@ public class EditActivity extends AppCompatActivity {
             Log.d("Testing", " devInfo ");
         }
 
-        btn_ok.setOnClickListener(new View.OnClickListener() {
+        btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent returnInfo = new Intent(getApplicationContext(), ViewAcivity.class);
