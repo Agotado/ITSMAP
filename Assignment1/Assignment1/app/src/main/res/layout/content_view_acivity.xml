@@ -89,5 +89,4 @@
             android:layout_marginTop="-22dp"
             android:clickable="false" />
     </LinearLayout>
-
 </RelativeLayout>

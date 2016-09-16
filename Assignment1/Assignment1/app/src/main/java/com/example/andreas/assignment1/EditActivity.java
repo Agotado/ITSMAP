@@ -1,14 +1,17 @@
 package com.example.andreas.assignment1;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -17,7 +20,6 @@ public class EditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-
         Button btn_save = (Button)findViewById(R.id.btn_save);
         Button btn_cancel = (Button)findViewById(R.id.btn_cancel);
         final EditText nameInput = (EditText)findViewById(R.id.name_input);
@@ -25,13 +27,15 @@ public class EditActivity extends AppCompatActivity {
         final RadioButton devInputYes = (RadioButton)findViewById(R.id.radioBtn_yes);
         final RadioButton devInputNo = (RadioButton)findViewById(R.id.radioBtn_no);
 
+        nameInput.requestFocus();
+        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(imm.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
         //if intent is received, get the info
         String messageName = getIntent().getStringExtra("nameInfoPopulate");
         String messageID = getIntent().getStringExtra("idInfoPopulate");
         Boolean messageDevInfo = getIntent().getBooleanExtra("devInfoPopulate",false);
         Log.d("Testing", " got the intent for populating " + messageName + " " + messageID + " " + messageDevInfo);
-
 
         if(messageName != null) {
             nameInput.setText(messageName);
@@ -40,8 +44,7 @@ public class EditActivity extends AppCompatActivity {
             idInput.setText(messageID);
             Log.d("Testing", " id ");
 
-
-            if(messageDevInfo == true)
+            if(messageDevInfo)
             {
                 devInputYes.setChecked(true);
             } else
@@ -87,6 +90,5 @@ public class EditActivity extends AppCompatActivity {
                 startActivity(returnToView);
             }
         });
-
     }
 }
