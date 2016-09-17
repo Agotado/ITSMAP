@@ -1,8 +1,6 @@
 package com.example.andreas.assignment1;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +8,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 
 public class EditActivity extends AppCompatActivity {
@@ -39,10 +36,10 @@ public class EditActivity extends AppCompatActivity {
 
         if(messageName != null) {
             nameInput.setText(messageName);
-            Log.d("Testing", " name ");
+            Log.d("Testing", " name " + messageName);
 
             idInput.setText(messageID);
-            Log.d("Testing", " id ");
+            Log.d("Testing", " id " + messageID);
 
             if(messageDevInfo)
             {
@@ -51,7 +48,7 @@ public class EditActivity extends AppCompatActivity {
             {
                 devInputNo.setChecked(true);
             }
-            Log.d("Testing", " devInfo ");
+            Log.d("Testing", " devInfo " + messageDevInfo);
         }
 
         btn_save.setOnClickListener(new View.OnClickListener() {
