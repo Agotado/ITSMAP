@@ -32,14 +32,11 @@ public class EditActivity extends AppCompatActivity {
         String messageName = getIntent().getStringExtra("nameInfoPopulate");
         String messageID = getIntent().getStringExtra("idInfoPopulate");
         Boolean messageDevInfo = getIntent().getBooleanExtra("devInfoPopulate",false);
-        Log.d("Testing", " got the intent for populating " + messageName + " " + messageID + " " + messageDevInfo);
+        Log.d("Testing", "Got the intent for populating " + messageName + " " + messageID + " " + messageDevInfo);
 
         if(messageName != null) {
             nameInput.setText(messageName);
-            Log.d("Testing", " name " + messageName);
-
             idInput.setText(messageID);
-            Log.d("Testing", " id " + messageID);
 
             if(messageDevInfo)
             {
@@ -48,7 +45,6 @@ public class EditActivity extends AppCompatActivity {
             {
                 devInputNo.setChecked(true);
             }
-            Log.d("Testing", " devInfo " + messageDevInfo);
         }
 
         btn_save.setOnClickListener(new View.OnClickListener() {
@@ -59,9 +55,7 @@ public class EditActivity extends AppCompatActivity {
                 String nameInfo = nameInput.getText().toString();
                 String idInfo = idInput.getText().toString();
                 Boolean devInfo = null;
-
-                Log.d("Testing", " b4 radio ");
-
+                
                 if(devInputYes.isChecked()) {
                     devInfo = true;
                 }
