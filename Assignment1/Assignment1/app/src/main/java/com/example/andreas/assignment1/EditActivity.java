@@ -26,13 +26,9 @@ public class EditActivity extends AppCompatActivity {
         final RadioButton devInputYes = (RadioButton)findViewById(R.id.radioBtn_yes);
         final RadioButton devInputNo = (RadioButton)findViewById(R.id.radioBtn_no);
 
-        Log.d("Testing", "Next! ");
-
         nameInput.requestFocus();
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(imm.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-
-        Log.d("Testing", "Next! ");
 
         //if intent is received, get the info
         String messageName = getIntent().getStringExtra("nameInfoPopulate");
