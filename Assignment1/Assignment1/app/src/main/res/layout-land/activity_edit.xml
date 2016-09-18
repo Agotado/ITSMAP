@@ -9,6 +9,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.andreas.assignment1.EditActivity">
 
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:paddingRight="220dp">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,15 +25,14 @@
         android:id="@+id/name_text"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="60dp" />
+        android:layout_alignParentStart="true"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/name_input"
-        android:minWidth="150dp"
+        android:minWidth="160dp"
+        android:maxWidth="300dp"
         android:layout_toRightOf="@+id/name_text"
         android:layout_alignBaseline="@+id/name_text"
         android:imeOptions="flagNoExtractUi"
@@ -42,23 +50,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/id_input"
-        android:minWidth="150dp"
+        android:minWidth="160dp"
         android:layout_alignBaseline="@+id/id_Text"
         android:layout_alignRight="@+id/name_input"
         android:layout_alignEnd="@+id/name_input"
         android:layout_alignLeft="@+id/name_input"
         android:imeOptions="flagNoExtractUi"
+        android:inputType="number"
+        android:maxLength="10"
+        android:adjustViewBounds="true"
+        android:maxWidth="200dp"
         android:layout_alignStart="@+id/name_input"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="220dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/android_developer"
-        android:id="@+id/dev_text"
-        android:layout_alignBottom="@+id/name_text"
-        android:layout_toRightOf="@+id/name_input"
-        android:layout_toEndOf="@+id/name_input"
-        android:layout_marginLeft="60dp" />
+        android:id="@+id/dev_text"/>
 
     <RadioGroup
         android:layout_width="wrap_content"
@@ -84,10 +100,9 @@
             android:text="@string/radioBtn_no"
             android:id="@+id/radioBtn_no"
             android:checked="false"/>
-
-
-
     </RadioGroup>
+    </RelativeLayout>
+
 
     <Button
         android:layout_width="wrap_content"

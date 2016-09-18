@@ -28,6 +28,7 @@
         android:layout_alignLeft="@+id/name_text"
         android:layout_alignStart="@+id/name_text"
         android:minWidth="200dp"
+        android:maxWidth="300dp"
         android:layout_marginBottom="2dp" />
 
     <TextView
@@ -47,7 +48,9 @@
         android:layout_alignLeft="@+id/id_Text"
         android:layout_alignStart="@+id/id_Text"
         android:minWidth="200dp"
-        android:layout_marginBottom="2dp" />
+        android:layout_marginBottom="2dp"
+        android:inputType="number"
+        android:maxLength="10"/>
 
     <TextView
         android:layout_width="wrap_content"

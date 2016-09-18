@@ -28,38 +28,38 @@ public class ViewAcivity extends AppCompatActivity {
     static Boolean savedDevInfo = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_acivity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final ImageButton profilePic = (ImageButton)findViewById(R.id.profilePic);
-        final TextView nameText = (TextView)findViewById(R.id.name_view);
-        final TextView idText = (TextView)findViewById(R.id.id_view);
-        final CheckBox devInfo = (CheckBox)findViewById(R.id.checkBox_view);
+        final ImageButton profilePic = (ImageButton) findViewById(R.id.profilePic);
+        final TextView nameText = (TextView) findViewById(R.id.name_view);
+        final TextView idText = (TextView) findViewById(R.id.id_view);
+        final CheckBox devInfo = (CheckBox) findViewById(R.id.checkBox_view);
         Log.d("Testing", "Created Elements ");
 
         //if cancel clicked, get persisted data:
         nameText.setText(savedName);
         idText.setText(savedId);
         devInfo.setChecked(savedDevInfo);
-        if(savedUri != null) {
+        if (savedUri != null) {
             profilePic.setImageURI(savedUri);
         }
 
         //if intent is recieved, get the info
         String messageName = getIntent().getStringExtra("nameInfo");
         String messageID = getIntent().getStringExtra("idInfo");
-        Boolean messageDevInfo = getIntent().getBooleanExtra("devInfo",false);
+        Boolean messageDevInfo = getIntent().getBooleanExtra("devInfo", false);
         Log.d("Testing", "Got the intent " + messageName + " " + messageID + " " + messageDevInfo + " " + savedUri);
 
         //if saved info, get it!
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             savedName = savedInstanceState.getString("savedName");
             savedId = savedInstanceState.getString("savedId");
             savedDevInfo = savedInstanceState.getBoolean("savedDevInfo");
-            if(savedUri != null) {
+            if (savedUri != null) {
                 savedUri = Uri.parse(savedInstanceState.getString("savedUri"));
             }
 
@@ -73,7 +73,7 @@ public class ViewAcivity extends AppCompatActivity {
         // if intent received overwrite the saved info!
         // The check if a messageName exists will suffice, since the Intent by this design
         // always gives a value for each parameter, empty string being != null
-        if(messageName != null) {
+        if (messageName != null) {
             nameText.setText(messageName);
             idText.setText(messageID);
             devInfo.setChecked(messageDevInfo);
@@ -107,7 +107,7 @@ public class ViewAcivity extends AppCompatActivity {
 
                 if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
                         || ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    Toast toast = Toast.makeText(getApplicationContext(),"Both Camera & Storage permissions needed",Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Both Camera & Storage permissions needed", Toast.LENGTH_SHORT);
                     toast.show();
                     return;
                 }
@@ -117,9 +117,15 @@ public class ViewAcivity extends AppCompatActivity {
                 //Trouble overwriting a picturefile with same name, hence this flagging system..
                 int pictureFlag = 0;
 
-                if(savedUri != null) {
-                    int lastElementOfSavedUri = Integer.parseInt(savedUri.toString().substring(savedUri.toString().length()-1));
-                    if(pictureFlag == lastElementOfSavedUri) {
+                if (savedUri != null) {
+
+                    // should now contain "PicX.jpg"
+                    String temp = (savedUri.toString().substring(savedUri.toString().length() - 8));
+
+                    //take the X from temp
+                    int lastUriFlag = Integer.parseInt(temp.substring(3, 4));
+
+                    if (lastUriFlag == pictureFlag) {
                         pictureFlag = 1;
                     }
                 }
@@ -127,6 +133,8 @@ public class ViewAcivity extends AppCompatActivity {
                 File photo = new File(Environment.getExternalStorageDirectory(), "Pic" + pictureFlag + ".jpg");
                 takePicture.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photo));
                 savedUri = Uri.fromFile(photo);
+
+                Log.d("Testing", "Take pic " + savedUri);
 
                 startActivityForResult(takePicture, 0);
             }
@@ -137,9 +145,9 @@ public class ViewAcivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == Activity.RESULT_OK && requestCode == 0) {
+        if (resultCode == Activity.RESULT_OK && requestCode == 0) {
 
-            ImageButton profilePic = (ImageButton)findViewById(R.id.profilePic);
+            ImageButton profilePic = (ImageButton) findViewById(R.id.profilePic);
             profilePic.setImageURI(savedUri);
         }
     }
@@ -149,16 +157,14 @@ public class ViewAcivity extends AppCompatActivity {
 
         savedInstanceState.putString("savedName", savedName);
         savedInstanceState.putString("savedId", savedId);
-        savedInstanceState.putBoolean("savedDevInfo",savedDevInfo);
+        savedInstanceState.putBoolean("savedDevInfo", savedDevInfo);
 
-        if(savedUri != null) {
-            Log.d("Testing", " dont break! " + savedUri);
+        if (savedUri != null) {
 
-            savedInstanceState.putString("savedUri",savedUri.getEncodedPath());
+            savedInstanceState.putString("savedUri", savedUri.getEncodedPath());
         }
 
         Log.d("Testing", " saving! " + savedName + " " + savedId + " " + savedDevInfo + " " + savedUri);
-
         super.onSaveInstanceState(savedInstanceState);
     }
 }

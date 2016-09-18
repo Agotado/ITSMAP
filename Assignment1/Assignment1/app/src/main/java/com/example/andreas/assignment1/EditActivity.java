@@ -9,9 +9,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import java.math.BigInteger;
 
 public class EditActivity extends AppCompatActivity {
 
+    int messageID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,19 +26,29 @@ public class EditActivity extends AppCompatActivity {
         final RadioButton devInputYes = (RadioButton)findViewById(R.id.radioBtn_yes);
         final RadioButton devInputNo = (RadioButton)findViewById(R.id.radioBtn_no);
 
+        Log.d("Testing", "Next! ");
+
         nameInput.requestFocus();
         InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
         imm.toggleSoftInput(imm.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
+        Log.d("Testing", "Next! ");
+
         //if intent is received, get the info
         String messageName = getIntent().getStringExtra("nameInfoPopulate");
-        String messageID = getIntent().getStringExtra("idInfoPopulate");
+
+        String messageIdReceived = getIntent().getStringExtra("idInfoPopulate");
+
         Boolean messageDevInfo = getIntent().getBooleanExtra("devInfoPopulate",false);
-        Log.d("Testing", "Got the intent for populating " + messageName + " " + messageID + " " + messageDevInfo);
+        idInput.setText("");
 
         if(messageName != null) {
             nameInput.setText(messageName);
-            idInput.setText(messageID);
+
+            if(!messageIdReceived.isEmpty()) {
+                messageID = Integer.parseInt(messageIdReceived);
+                idInput.setText(String.valueOf(messageID));
+            }
 
             if(messageDevInfo)
             {
@@ -55,7 +67,7 @@ public class EditActivity extends AppCompatActivity {
                 String nameInfo = nameInput.getText().toString();
                 String idInfo = idInput.getText().toString();
                 Boolean devInfo = null;
-                
+
                 if(devInputYes.isChecked()) {
                     devInfo = true;
                 }
