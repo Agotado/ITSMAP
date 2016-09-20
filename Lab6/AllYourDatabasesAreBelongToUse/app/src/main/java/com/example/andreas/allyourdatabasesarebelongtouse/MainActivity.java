@@ -1,44 +1,42 @@
 package com.example.andreas.allyourdatabasesarebelongtouse;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
-    public class DatabaseHelper extends SQLiteOpenHelper {
-
-        public static final int DATABASE_VERSION = 1;
-        public static final String DATABASE_NAME = "DatabaseHelper.db";
-
-        public  DatabaseHelper(Context context) {
-            super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-//            db.execSQL(SQL_CREATE_ENTRIES);
-        }
-
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//            db.execSQL(SQL_DELETE_ENTRIES);
-            onCreate(db);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        final DatabaseHelper databaseHelper = DatabaseHelper.getsInstance(getApplicationContext());
+        final Task task = new Task();
+
+        final EditText taskName = (EditText)findViewById(R.id.task_input);
+        final EditText placeName = (EditText)findViewById(R.id.place_input);
+
+        Button btn_add = (Button)findViewById(R.id.btn_add);
+
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                task.setTaskName(taskName.getText().toString());
+                task.setPlace(placeName.getText().toString());
+                task.setTaskId(databaseHelper.addTask(task));
+
+                Log.d("Testing", "Task: " + task.getTaskId() + " " + task.getTaskName() + " " + task.getPlace());
+
+                if(databaseHelper.WARNING!= null) {
+                    Toast.makeText( getApplicationContext() , databaseHelper.WARNING, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
-
-
-
-
-
 }
