@@ -45,14 +45,17 @@ public class TaskAdaptor extends BaseAdapter {
         return position;
     }
 
+    //this is the important override, this links the layout with the listView
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if(convertView == null) {
             LayoutInflater taskInflator = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            //this is where the magic happens
             convertView = taskInflator.inflate(R.layout.task_adapter_model,null);
         }
 
+        //here is the mapping of the task object data into the relevant fields in the layout model
         task = tasks.get(position);
         if(task != null) {
             TextView taskName = (TextView)convertView.findViewById(R.id.task_text);
@@ -61,6 +64,7 @@ public class TaskAdaptor extends BaseAdapter {
             TextView placeName = (TextView)convertView.findViewById(R.id.place_text);
             placeName.setText(task.getPlace());
         }
+
         return convertView;
     }
 }
