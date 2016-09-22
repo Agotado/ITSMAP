@@ -168,8 +168,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             //foreach row
             for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 
-                Log.d("Testing", "Row: " + "ID: " + String.valueOf(c.getLong(0)) + " Task: " + c.getString(1) + " Place: " + c.getString(2));
-
                 //Add task to list of tasks
                 taskList.add(databaseHelper.getTask(c.getLong(0)));
             }

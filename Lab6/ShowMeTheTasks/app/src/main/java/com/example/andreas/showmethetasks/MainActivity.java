@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         //create handles
         final DatabaseHelper databaseHelper = DatabaseHelper.getsInstance(getApplicationContext());
-        final Task task = new Task();
         final EditText taskInput = (EditText) findViewById(R.id.task_input);
         final EditText placeInput = (EditText) findViewById(R.id.place_input);
         Button btn_add = (Button) findViewById(R.id.btn_add);
@@ -52,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //create task object
+                Task task = new Task();
 
                 //populate task object with data from fields + add it to the database (which returns the taskId)
                 task.setTaskName(taskInput.getText().toString());
