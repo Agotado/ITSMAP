@@ -13,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout">
 
         <Button
             android:layout_width="wrap_content"
@@ -32,5 +33,37 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/btn_start"
             android:layout_toEndOf="@+id/btn_start" />
+
     </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bind"
+            android:id="@+id/btn_bind"
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UnBind"
+            android:id="@+id/btn_unbind"
+
+            android:layout_gravity="center_vertical" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BindStatus"
+            android:id="@+id/btn_bindStatus"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+
 </RelativeLayout>

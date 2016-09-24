@@ -1,9 +1,12 @@
 package app.illbebackground;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,17 +16,31 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import app.illbebackground.Services.BackgroundService;
+import app.illbebackground.Services.CounterBindingService;
 
 public class MainActivity extends AppCompatActivity {
+
+    //BoundService variables
+    private CounterBindingService countService;
+    private ServiceConnection countingSC;
+    private boolean bound = false;
+    private int count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //BG Service buttons
         Button btn_start = (Button)findViewById(R.id.btn_start);
         Button btn_stop = (Button)findViewById(R.id.btn_stop);
 
+        //Bound Service buttons
+        Button btn_bind = (Button)findViewById(R.id.btn_bind);
+        Button btn_unBind = (Button)findViewById(R.id.btn_unbind);
+        Button btn_bindStatus = (Button)findViewById(R.id.btn_bindStatus);
+
+        //Start BgService
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        //Stop bgService
         btn_stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +62,74 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Testing","Stop Pressed!");
             }
         });
+
+        //bind to BoundService
+        btn_bind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("Testing", "Bind!..");
+
+                if(!bound) {
+
+                    Intent bind = new Intent(getApplicationContext(), CounterBindingService.class);
+                    bindService(bind, countingSC, Context.BIND_AUTO_CREATE);
+                    bound = true;
+                    Toast.makeText(getApplicationContext(),"You are now Bound!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        //unBind from BoundService
+        btn_unBind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Log.d("Testing", "unBind!..");
+
+                if(bound) {
+                    unbindService(countingSC);
+                    bound = false;
+                    Toast.makeText(getApplicationContext(),"You are now unBound!", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
+        //BoundService status
+        btn_bindStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Testing", "BindStatus");
+
+                if(bound && countService != null) {
+                    count = countService.getCount();
+
+                    Toast.makeText(getApplicationContext(),"Count is " + count, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(),"You are not bound to any service", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        //Create connection to BoundService
+        countingSC = new ServiceConnection() {
+            //Connect
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+
+                countService = ((CounterBindingService.ServiceBinder)service).getService();
+                Log.d("Testing", "Counting service connected");
+            }
+
+            //Disconnect
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                countService = null;
+                Log.d("Testing", "Counting service disconnected");
+            }
+        };
+
     }
 
     @Override
