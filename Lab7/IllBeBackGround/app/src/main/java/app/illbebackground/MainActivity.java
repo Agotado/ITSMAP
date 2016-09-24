@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import app.illbebackground.Services.BackgroundService;
 import app.illbebackground.Services.CounterBindingService;
+import app.illbebackground.Services.FooBazIntentService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private ServiceConnection countingSC;
     private boolean bound = false;
     private int count;
+
+    //IntentService variables
+    private int fooCount = 0;
+    private int bazCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         Button btn_unBind = (Button)findViewById(R.id.btn_unbind);
         Button btn_bindStatus = (Button)findViewById(R.id.btn_bindStatus);
 
+        //Intent Service buttons
+        Button btn_foo = (Button)findViewById(R.id.btn_foo);
+        Button btn_baz = (Button)findViewById(R.id.btn_baz);
+
         //Start BgService
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Testing","Start Pressed!");
             }
         });
-
 
         //Stop bgService
         btn_stop.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +138,25 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        //IntentService Foo call
+        btn_foo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                fooCount++;
+                FooBazIntentService.startActionFoo(getApplicationContext(), "FOO" + fooCount, "" + (fooCount+bazCount));
+            }
+        });
+
+        //IntentService Baz call
+        btn_baz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                bazCount++;
+                FooBazIntentService.startActionBaz(getApplicationContext(), "BAZ" + bazCount, "" + (fooCount+bazCount));
+            }
+        });
     }
 
     @Override

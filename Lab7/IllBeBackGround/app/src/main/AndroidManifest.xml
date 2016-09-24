@@ -9,7 +9,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service android:name=".Services.BackgroundService" />
-        <service android:name=".Services.CounterBindingService"/>
+        <service android:name=".Services.CounterBindingService" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,6 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".Services.FooBazIntentService"
+            android:exported="false"></service>
     </application>
 
 </manifest>

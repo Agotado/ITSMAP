@@ -12,9 +12,9 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/relativeLayout">
+        android:id="@+id/relativeLayout"
+        android:layout_above="@+id/linearLayout">
 
         <Button
             android:layout_width="wrap_content"
@@ -40,8 +40,9 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_centerHorizontal="true">
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
 
         <Button
             android:layout_width="wrap_content"
@@ -65,5 +66,30 @@
             android:id="@+id/btn_bindStatus"
             android:layout_gravity="center_vertical" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Foo"
+            android:id="@+id/btn_foo"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Baz"
+            android:id="@+id/btn_baz"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/btn_foo"
+            android:layout_toEndOf="@+id/btn_foo" />
+    </RelativeLayout>
 
 </RelativeLayout>
