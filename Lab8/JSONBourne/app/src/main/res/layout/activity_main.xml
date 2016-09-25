@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="app.jsonbourne.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch to Volley"
+            android:id="@+id/btn_switch"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check Connection"
+            android:id="@+id/btn_connection"
+            android:layout_below="@+id/btn_switch"
+            android:layout_centerHorizontal="true" />
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_parseJSON"
+            android:text="Parse JSON"
+            android:layout_below="@+id/btn_connection"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No info"
+            android:id="@+id/txt_weather"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/btn_Weather"
+
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_Weather"
+            android:layout_below="@+id/btn_parseJSON"
+
+            android:layout_centerHorizontal="true"
+            android:text="Get Aarhus Weather"
+            android:layout_marginTop="10dp" />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
